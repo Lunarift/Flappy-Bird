@@ -53,7 +53,7 @@ def update_high_score():
     f = open("highScore.txt", "r")
     saved_score = int(f.read(-1))
     f.close()
-    high_score_surface = game_font.render(f'High Score:  {str(saved_score)}', True, (0,0,0))
+    high_score_surface = game_font.render(f'High Score:  {str(saved_score)}', True, (255,255,255))
     score_rect = high_score_surface.get_rect(center=(150,50))
     screen.blit(high_score_surface, score_rect)
     if score > saved_score:
@@ -68,6 +68,7 @@ pygame.display.set_caption("Pygame")
 screen = pygame.display.set_mode([576,720])
 clock = pygame.time.Clock()
 game_active = False
+title_screen = True
 game_font = pygame.font.Font('Assets/04B_19.TTF', 30)
 # Load the cascade
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -138,9 +139,12 @@ while True:
         pipe_list = move_pipe(pipe_list)
         draw_pipe(pipe_list)
     else:
-        #screen.blit(end_surface, (200, 300))
+        if title_screen:
+          screen.blit(start_surface, start_rect)
+        else:
+          screen.blit(end_surface, start_rect)
         
-        screen.blit(start_surface, start_rect)
+        
 
     #GROUND
     if score < 20:

@@ -78,11 +78,12 @@ cap = cv2.VideoCapture(0)
 
 #START / END
 start_surface = pygame.image.load("Assets/message.png")
-start_rect = start_surface.get_rect(center = screen.get_rect().center)
+mid_screen_rect = start_surface.get_rect(center = screen.get_rect().center)
+end_score_rect = mid_screen_rect.y - 50
 end_surface = pygame.image.load("Assets/gameover.png")
 end_rect = end_surface.get_rect(center = screen.get_rect().center)
 global score
-score = 15
+score = 0
 #BIRD
 bird_surface = pygame.image.load("Assets/bluebird-midflap.png")
 bird_rect = bird_surface.get_rect(center=(100, 450))
@@ -140,11 +141,12 @@ while True:
         draw_pipe(pipe_list)
     else:
         if title_screen:
-          screen.blit(start_surface, start_rect)
+          screen.blit(start_surface, mid_screen_rect)
         else:
-          screen.blit(end_surface, start_rect)
-          end_score_rect = start_rect.y - 50
-          screen.blit(score_surface, end_score_rect)
+          screen.blit(end_surface, mid_screen_rect)
+          for i in range(score):
+            score_up = game_font.render( str(score), True, (0,0,0))
+          screen.blit(score_up, end_score_rect)
         
         
 

@@ -143,7 +143,8 @@ while True:
           screen.blit(start_surface, start_rect)
         else:
           screen.blit(end_surface, start_rect)
-          #screen.blit(score_surface, score_rect)
+          end_score_rect = start_rect.y - 50
+          screen.blit(score_surface, end_score_rect)
         
         
 

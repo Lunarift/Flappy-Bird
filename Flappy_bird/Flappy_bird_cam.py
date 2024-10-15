@@ -143,6 +143,7 @@ while True:
           screen.blit(start_surface, start_rect)
         else:
           screen.blit(end_surface, start_rect)
+          #screen.blit(score_surface, score_rect)
         
         
 
@@ -172,6 +173,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and game_active == False:
                 game_active = True
+                title_screen = False
                 pipe_list = []
                 scored_pipes = []
                 score = 0
